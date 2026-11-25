@@ -59,7 +59,7 @@ pipeline {
                             git remote set-url origin https://\${GH_USER}:\${GH_TOKEN}@github.com/Ashinkp/my_fastapi_app.git
                             git pull --rebase origin ${MANIFEST_BRANCH}
                             
-                            sed -i "s|image: ashin2002/my_fastapi_app:.*|image: ashin2002/my_fastapi_app:${BUILD_NUMBER}|" k8s/Deployment.yaml
+                            sed -i "s|IMAGE_PLACEHOLDER|ashin2002/my_fastapi_app:${BUILD_NUMBER}|g" k8s/Deployment.yaml
                             
                             git config user.name "Ashinkp"
                             git config user.email "ashinkp33@gmail.com"
