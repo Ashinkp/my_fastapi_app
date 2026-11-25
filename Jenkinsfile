@@ -3,11 +3,11 @@ pipeline {
 
     environment {
         DOCKER_CREDENTIALS_ID = 'docker-cred'
-        DOCKER_IMAGE          = 'ashin2002/fast-api-chatbot'
+        DOCKER_IMAGE          = 'ashin2002/my_fastapi_app'
         SONAR_SERVER_NAME     = 'sonarqube-env' 
         SONAR_SCANNER_TOOL    = 'sonarqube-scanner'     
         GIT_CREDENTIALS_ID    = 'github-cred'
-        MANIFEST_REPO         = 'https://github.com/Ashinkp/fast-api-chatbot.git'
+        MANIFEST_REPO         = 'https://github.com/Ashinkp/my_fastapi_app.git'
         MANIFEST_BRANCH       = 'main'
     }
 
@@ -24,8 +24,8 @@ pipeline {
                     def scannerHome = tool "${SONAR_SCANNER_TOOL}"
                     withSonarQubeEnv("${SONAR_SERVER_NAME}") {
                         sh "${scannerHome}/bin/sonar-scanner \
-                            -Dsonar.projectKey=fast-api-chatbot-key \
-                            -Dsonar.projectName='fast-api-chatbot-project' \
+                            -Dsonar.projectKey=my_fastapi_app-key \
+                            -Dsonar.projectName='my_fastapi_app-project' \
                             -Dsonar.sources=. \
                             -Dsonar.exclusions=*/venv/,/.venv/,/_pycache_/,/.pytest_cache/,/static/*"
                     }
@@ -59,7 +59,7 @@ pipeline {
                             git remote set-url origin https://\${GH_USER}:\${GH_TOKEN}@github.com/Ashinkp/fast-api-chatbot.git
                             git pull --rebase origin ${MANIFEST_BRANCH}
                             
-                            sed -i '/name: fast-api-chatbot/{n;s|image:.*|image: ${DOCKER_IMAGE}:${env.BUILD_NUMBER}|}' k8s/Deployment.yaml
+                            sed -i 'my_fastapi_app/name: /{n;s|image:.*|image: ${DOCKER_IMAGE}:${env.BUILD_NUMBER}|}' k8s/Deployment.yaml
                             
                             git config user.name "Ashinkp"
                             git config user.email "ashinkp33@gmail.com"
