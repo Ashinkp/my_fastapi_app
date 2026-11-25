@@ -56,7 +56,7 @@ pipeline {
                     sh "git clone ${MANIFEST_REPO} . || true"
                     withCredentials([usernamePassword(credentialsId: "${GIT_CREDENTIALS_ID}", usernameVariable: 'GH_USER', passwordVariable: 'GH_TOKEN')]) {
                         sh """
-                            git remote set-url origin https://\${GH_USER}:\${GH_TOKEN}@https://github.com/Ashinkp/my_fastapi_app.git
+                            git remote set-url origin https://\${GH_USER}:\${GH_TOKEN}@github.com/Ashinkp/my_fastapi_app.git
                             git pull --rebase origin ${MANIFEST_BRANCH}
                             
                             sed -i "s|image: ashin2002/my_fastapi_app:.*|image: ashin2002/my_fastapi_app:${BUILD_NUMBER}|" k8s/deployment.yaml
