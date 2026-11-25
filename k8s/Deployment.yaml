@@ -14,7 +14,7 @@ spec:
     spec:
       containers:
         - name: fastapi-app
-          image: IMAGE_PLACEHOLDER
+          image: ashin2002/my_fastapi_app:8
           imagePullPolicy: Always
           ports:
             - containerPort: 8000
