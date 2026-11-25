@@ -1,0 +1,528 @@
+Started by user Ashin K P
+Obtained Jenkinsfile from git https://github.com/Ashinkp/my_fastapi_app
+[Pipeline] Start of Pipeline
+[Pipeline] node
+Running on Jenkins in /var/lib/jenkins/workspace/my_fastapi_app
+[Pipeline] {
+[Pipeline] stage
+[Pipeline] { (Declarative: Checkout SCM)
+[Pipeline] checkout
+Selected Git installation does not exist. Using Default
+The recommended git tool is: NONE
+using credential github-cred
+ > git rev-parse --resolve-git-dir /var/lib/jenkins/workspace/my_fastapi_app/.git # timeout=10
+Fetching changes from the remote Git repository
+ > git config remote.origin.url https://github.com/Ashinkp/my_fastapi_app # timeout=10
+Fetching upstream changes from https://github.com/Ashinkp/my_fastapi_app
+ > git --version # timeout=10
+ > git --version # 'git version 2.53.0'
+using GIT_ASKPASS to set credentials this is the github credential
+ > git fetch --tags --force --progress -- https://github.com/Ashinkp/my_fastapi_app +refs/heads/*:refs/remotes/origin/* # timeout=10
+ > git rev-parse refs/remotes/origin/main^{commit} # timeout=10
+Checking out Revision 15ee21d2945ad07ef60484c89f2df691acb36bba (refs/remotes/origin/main)
+ > git config core.sparsecheckout # timeout=10
+ > git checkout -f 15ee21d2945ad07ef60484c89f2df691acb36bba # timeout=10
+Commit message: "changed commit"
+ > git rev-list --no-walk e7761b264596a37df6095e514d4b35de3a5d6383 # timeout=10
+[Pipeline] }
+[Pipeline] // stage
+[Pipeline] withEnv
+[Pipeline] {
+[Pipeline] withEnv
+[Pipeline] {
+[Pipeline] stage
+[Pipeline] { (Checkout Source Code)
+[Pipeline] checkout
+Selected Git installation does not exist. Using Default
+The recommended git tool is: NONE
+using credential github-cred
+ > git rev-parse --resolve-git-dir /var/lib/jenkins/workspace/my_fastapi_app/.git # timeout=10
+Fetching changes from the remote Git repository
+ > git config remote.origin.url https://github.com/Ashinkp/my_fastapi_app # timeout=10
+Fetching upstream changes from https://github.com/Ashinkp/my_fastapi_app
+ > git --version # timeout=10
+ > git --version # 'git version 2.53.0'
+using GIT_ASKPASS to set credentials this is the github credential
+ > git fetch --tags --force --progress -- https://github.com/Ashinkp/my_fastapi_app +refs/heads/*:refs/remotes/origin/* # timeout=10
+ > git rev-parse refs/remotes/origin/main^{commit} # timeout=10
+Checking out Revision 15ee21d2945ad07ef60484c89f2df691acb36bba (refs/remotes/origin/main)
+ > git config core.sparsecheckout # timeout=10
+ > git checkout -f 15ee21d2945ad07ef60484c89f2df691acb36bba # timeout=10
+Commit message: "changed commit"
+[Pipeline] }
+[Pipeline] // stage
+[Pipeline] stage
+[Pipeline] { (SonarQube Analysis)
+[Pipeline] script
+[Pipeline] {
+[Pipeline] tool
+[Pipeline] withSonarQubeEnv
+Injecting SonarQube environment variables using the configuration: sonarqube-env
+[Pipeline] {
+[Pipeline] sh
++ /var/lib/jenkins/tools/hudson.plugins.sonar.SonarRunnerInstallation/sonarqube-scanner/bin/sonar-scanner -Dsonar.projectKey=my_fastapi_app-key -Dsonar.projectName=my_fastapi_app-project -Dsonar.sources=. -Dsonar.exclusions=*/venv/,/.venv/,/_pycache_/,/.pytest_cache/,/static/*
+20:03:41.277 INFO  Scanner configuration file: /var/lib/jenkins/tools/hudson.plugins.sonar.SonarRunnerInstallation/sonarqube-scanner/conf/sonar-scanner.properties
+20:03:41.283 INFO  Project root configuration file: NONE
+20:03:41.306 INFO  SonarScanner CLI 8.5.0.16571
+20:03:41.315 INFO  Linux 7.0.0-1017-aws amd64
+20:03:42.742 INFO  Communicating with SonarQube Server 9.9.8.100196
+20:03:43.631 INFO  Load global settings
+20:03:43.753 INFO  Load global settings (done) | time=124ms
+20:03:43.756 INFO  Server id: 243B8A4D-AaHuN_9faawbTAK-cS7J
+20:03:43.763 INFO  User cache: /var/lib/jenkins/.sonar/cache
+20:03:43.769 INFO  Load/download plugins
+20:03:43.770 INFO  Load plugins index
+20:03:43.825 INFO  Load plugins index (done) | time=55ms
+20:03:43.931 INFO  Load/download plugins (done) | time=162ms
+20:03:44.807 INFO  Process project properties
+20:03:44.820 INFO  Process project properties (done) | time=13ms
+20:03:44.826 INFO  Execute project builders
+20:03:44.828 INFO  Execute project builders (done) | time=2ms
+20:03:44.836 INFO  Project key: my_fastapi_app-key
+20:03:44.836 INFO  Base dir: /var/lib/jenkins/workspace/my_fastapi_app
+20:03:44.837 INFO  Working dir: /var/lib/jenkins/workspace/my_fastapi_app/.scannerwork
+20:03:44.854 INFO  Load project settings for component key: 'my_fastapi_app-key'
+20:03:44.885 INFO  Load project settings for component key: 'my_fastapi_app-key' (done) | time=31ms
+20:03:45.083 INFO  Auto-configuring with CI 'Jenkins'
+20:03:45.090 INFO  Load quality profiles
+20:03:45.164 INFO  Load quality profiles (done) | time=74ms
+20:03:45.200 INFO  Load active rules
+20:03:46.943 INFO  Load active rules (done) | time=1743ms
+20:03:46.955 INFO  Load analysis cache
+20:03:46.974 INFO  Load analysis cache (1.5 kB) | time=19ms
+20:03:47.075 INFO  Load project repositories
+20:03:47.107 INFO  Load project repositories (done) | time=32ms
+20:03:47.200 INFO  Indexing files...
+20:03:47.203 INFO  Project configuration:
+20:03:47.203 INFO    Excluded sources: */venv/, /.venv/, /_pycache_/, /.pytest_cache/, /static/*
+20:03:47.514 INFO  8 files indexed
+20:03:47.514 INFO  0 files ignored because of inclusion/exclusion patterns
+20:03:47.515 INFO  8 files ignored because of scm ignore settings
+20:03:47.517 INFO  Quality profile for py: Sonar way
+20:03:47.517 INFO  Quality profile for yaml: Sonar way
+20:03:47.517 INFO  ------------- Run sensors on module my_fastapi_app-project
+20:03:47.691 INFO  Load metrics repository
+20:03:47.730 INFO  Load metrics repository (done) | time=40ms
+20:03:49.830 INFO  Sensor Python Sensor [python]
+20:03:49.834 WARN  Your code is analyzed as compatible with python 2 and 3 by default. This will prevent the detection of issues specific to python 2 or python 3. You can get a more precise analysis by setting a python version in your configuration via the parameter "sonar.python.version"
+20:03:49.848 INFO  Starting global symbols computation
+20:03:49.857 INFO  1 source file to be analyzed
+20:03:50.284 INFO  1/1 source file has been analyzed
+20:03:50.320 INFO  Starting rules execution
+20:03:50.321 INFO  1 source file to be analyzed
+20:03:50.638 INFO  1/1 source file has been analyzed
+20:03:50.640 INFO  The Python analyzer was able to leverage cached data from previous analyses for 0 out of 1 files. These files were not parsed.
+20:03:50.640 INFO  Sensor Python Sensor [python] (done) | time=811ms
+20:03:50.640 INFO  Sensor Cobertura Sensor for Python coverage [python]
+20:03:50.654 INFO  Sensor Cobertura Sensor for Python coverage [python] (done) | time=14ms
+20:03:50.655 INFO  Sensor PythonXUnitSensor [python]
+20:03:50.664 INFO  Sensor PythonXUnitSensor [python] (done) | time=9ms
+20:03:50.665 INFO  Sensor JaCoCo XML Report Importer [jacoco]
+20:03:50.667 INFO  'sonar.coverage.jacoco.xmlReportPaths' is not defined. Using default locations: target/site/jacoco/jacoco.xml,target/site/jacoco-it/jacoco.xml,build/reports/jacoco/test/jacocoTestReport.xml
+20:03:50.667 INFO  No report imported, no coverage information will be imported by JaCoCo XML Report Importer
+20:03:50.668 INFO  Sensor JaCoCo XML Report Importer [jacoco] (done) | time=2ms
+20:03:50.668 INFO  Sensor IaC CloudFormation Sensor [iac]
+20:03:50.676 INFO  0 source files to be analyzed
+20:03:50.693 INFO  0/0 source files have been analyzed
+20:03:50.694 INFO  Sensor IaC CloudFormation Sensor [iac] (done) | time=26ms
+20:03:50.694 INFO  Sensor IaC Kubernetes Sensor [iac]
+20:03:50.698 INFO  2 source files to be analyzed
+20:03:50.773 INFO  2/2 source files have been analyzed
+20:03:50.774 INFO  Sensor IaC Kubernetes Sensor [iac] (done) | time=80ms
+20:03:50.774 INFO  Sensor JavaScript inside YAML analysis [javascript]
+20:03:50.784 INFO  No input files found for analysis
+20:03:50.785 INFO  Hit the cache for 0 out of 0
+20:03:50.787 INFO  Miss the cache for 0 out of 0
+20:03:50.787 INFO  Sensor JavaScript inside YAML analysis [javascript] (done) | time=13ms
+20:03:50.787 INFO  Sensor CSS Rules [javascript]
+20:03:50.788 INFO  No CSS, PHP, HTML or VueJS files are found in the project. CSS analysis is skipped.
+20:03:50.788 INFO  Sensor CSS Rules [javascript] (done) | time=1ms
+20:03:50.788 INFO  Sensor C# Project Type Information [csharp]
+20:03:50.790 INFO  Sensor C# Project Type Information [csharp] (done) | time=2ms
+20:03:50.790 INFO  Sensor C# Analysis Log [csharp]
+20:03:50.806 INFO  Sensor C# Analysis Log [csharp] (done) | time=16ms
+20:03:50.807 INFO  Sensor C# Properties [csharp]
+20:03:50.807 INFO  Sensor C# Properties [csharp] (done) | time=0ms
+20:03:50.807 INFO  Sensor HTML [web]
+20:03:50.811 INFO  Sensor HTML [web] (done) | time=4ms
+20:03:50.812 INFO  Sensor TextAndSecretsSensor [text]
+20:03:50.822 INFO  3 source files to be analyzed
+20:03:50.848 INFO  3/3 source files have been analyzed
+20:03:50.848 INFO  Sensor TextAndSecretsSensor [text] (done) | time=36ms
+20:03:50.848 INFO  Sensor VB.NET Project Type Information [vbnet]
+20:03:50.849 INFO  Sensor VB.NET Project Type Information [vbnet] (done) | time=1ms
+20:03:50.849 INFO  Sensor VB.NET Analysis Log [vbnet]
+20:03:50.866 INFO  Sensor VB.NET Analysis Log [vbnet] (done) | time=17ms
+20:03:50.866 INFO  Sensor VB.NET Properties [vbnet]
+20:03:50.867 INFO  Sensor VB.NET Properties [vbnet] (done) | time=1ms
+20:03:50.867 INFO  Sensor IaC Docker Sensor [iac]
+20:03:50.870 INFO  1 source file to be analyzed
+20:03:50.964 INFO  1/1 source file has been analyzed
+20:03:50.965 INFO  Sensor IaC Docker Sensor [iac] (done) | time=98ms
+20:03:50.970 INFO  ------------- Run sensors on project
+20:03:51.071 INFO  Sensor Analysis Warnings import [csharp]
+20:03:51.072 INFO  Sensor Analysis Warnings import [csharp] (done) | time=1ms
+20:03:51.072 INFO  Sensor Zero Coverage Sensor
+20:03:51.081 INFO  Sensor Zero Coverage Sensor (done) | time=9ms
+20:03:51.096 INFO  CPD Executor Calculating CPD for 1 file
+20:03:51.104 INFO  CPD Executor CPD calculation finished (done) | time=8ms
+20:03:51.230 INFO  Analysis report generated in 123ms, dir size=128.3 kB
+20:03:51.258 INFO  Analysis report compressed in 28ms, zip size=22.2 kB
+20:03:51.289 INFO  Analysis report uploaded in 31ms
+20:03:51.293 INFO  ANALYSIS SUCCESSFUL, you can find the results at: http://13.201.85.13:9000/dashboard?id=my_fastapi_app-key
+20:03:51.293 INFO  Note that you will be able to access the updated dashboard once the server has processed the submitted analysis report
+20:03:51.293 INFO  More about the report processing at http://13.201.85.13:9000/api/ce/task?id=AaIUTrFtaawbTAK-cc1S
+20:03:51.306 INFO  Analysis total time: 7.198 s
+20:03:51.308 INFO  EXECUTION SUCCESS
+20:03:51.309 INFO  Total time: 10.092s
+[Pipeline] }
+[Pipeline] // withSonarQubeEnv
+[Pipeline] }
+[Pipeline] // script
+[Pipeline] }
+[Pipeline] // stage
+[Pipeline] stage
+[Pipeline] { (Build & Push Docker Image)
+[Pipeline] script
+[Pipeline] {
+[Pipeline] withCredentials
+Masking supported pattern matches of $DOCKER_PASS
+[Pipeline] {
+[Pipeline] sh
++ echo ****
++ docker login -u ashin2002 --password-stdin
+Login Succeeded
++ docker build -t ashin2002/my_fastapi_app:8 -t ashin2002/my_fastapi_app:latest -f Dockerfile .
+DEPRECATED: The legacy builder is deprecated and will be removed in a future release.
+            Install the buildx component to build images with BuildKit:
+            https://docs.docker.com/go/buildx/
+
+Sending build context to Docker daemon  209.9kB
+Step 1/10 : FROM python:3.12-slim
+ ---> 191083cdf6c7
+Step 2/10 : ENV PYTHONDONTWRITEBYTECODE=1     PYTHONUNBUFFERED=1
+ ---> Using cache
+ ---> b69a49040f43
+Step 3/10 : WORKDIR /app
+ ---> Using cache
+ ---> a5b7660a2bd7
+Step 4/10 : COPY requirements.txt .
+ ---> Using cache
+ ---> 013dd0995fb6
+Step 5/10 : RUN pip install --no-cache-dir -r requirements.txt
+ ---> Using cache
+ ---> 4736f8daec4b
+Step 6/10 : COPY main.py .
+ ---> Using cache
+ ---> b150d9b62c92
+Step 7/10 : RUN useradd -m appuser
+ ---> Using cache
+ ---> 56fe58502365
+Step 8/10 : USER appuser
+ ---> Using cache
+ ---> c1f6284b1f26
+Step 9/10 : EXPOSE 8000
+ ---> Using cache
+ ---> 9ce4d1ed8603
+Step 10/10 : CMD ["uvicorn", "main:app", "--host", "0.0.0.0", "--port", "8000"]
+ ---> Using cache
+ ---> 5cdf1e27d6af
+Successfully built 5cdf1e27d6af
+Successfully tagged ashin2002/my_fastapi_app:8
+Successfully tagged ashin2002/my_fastapi_app:latest
++ docker push ashin2002/my_fastapi_app:8
+The push refers to repository [docker.io/ashin2002/my_fastapi_app]
+286d8c291daa: Waiting
+14d64154ddd3: Waiting
+30cf67d7101c: Waiting
+41c75fa7c958: Waiting
+00b3599359ff: Waiting
+0b5275f2c43a: Waiting
+40748add9f4f: Waiting
+e3e428093f5e: Waiting
+9ca9ebf7d579: Waiting
+14d64154ddd3: Waiting
+30cf67d7101c: Waiting
+41c75fa7c958: Waiting
+00b3599359ff: Waiting
+0b5275f2c43a: Waiting
+40748add9f4f: Waiting
+e3e428093f5e: Waiting
+9ca9ebf7d579: Waiting
+286d8c291daa: Waiting
+40748add9f4f: Waiting
+e3e428093f5e: Waiting
+9ca9ebf7d579: Waiting
+286d8c291daa: Waiting
+14d64154ddd3: Waiting
+30cf67d7101c: Waiting
+41c75fa7c958: Waiting
+00b3599359ff: Waiting
+0b5275f2c43a: Waiting
+0b5275f2c43a: Waiting
+40748add9f4f: Waiting
+e3e428093f5e: Waiting
+9ca9ebf7d579: Waiting
+286d8c291daa: Waiting
+14d64154ddd3: Waiting
+30cf67d7101c: Waiting
+41c75fa7c958: Waiting
+00b3599359ff: Waiting
+14d64154ddd3: Waiting
+30cf67d7101c: Waiting
+41c75fa7c958: Waiting
+00b3599359ff: Waiting
+0b5275f2c43a: Waiting
+40748add9f4f: Waiting
+e3e428093f5e: Waiting
+9ca9ebf7d579: Waiting
+286d8c291daa: Waiting
+14d64154ddd3: Waiting
+30cf67d7101c: Waiting
+41c75fa7c958: Waiting
+00b3599359ff: Waiting
+0b5275f2c43a: Waiting
+40748add9f4f: Waiting
+e3e428093f5e: Waiting
+9ca9ebf7d579: Waiting
+286d8c291daa: Waiting
+40748add9f4f: Waiting
+e3e428093f5e: Waiting
+9ca9ebf7d579: Waiting
+286d8c291daa: Waiting
+14d64154ddd3: Waiting
+30cf67d7101c: Waiting
+41c75fa7c958: Waiting
+00b3599359ff: Waiting
+0b5275f2c43a: Waiting
+0b5275f2c43a: Waiting
+40748add9f4f: Waiting
+e3e428093f5e: Waiting
+9ca9ebf7d579: Waiting
+286d8c291daa: Waiting
+14d64154ddd3: Waiting
+30cf67d7101c: Waiting
+41c75fa7c958: Waiting
+00b3599359ff: Waiting
+30cf67d7101c: Waiting
+41c75fa7c958: Waiting
+00b3599359ff: Waiting
+0b5275f2c43a: Waiting
+40748add9f4f: Waiting
+e3e428093f5e: Waiting
+9ca9ebf7d579: Waiting
+286d8c291daa: Waiting
+14d64154ddd3: Waiting
+14d64154ddd3: Layer already exists
+30cf67d7101c: Waiting
+41c75fa7c958: Waiting
+00b3599359ff: Waiting
+0b5275f2c43a: Waiting
+40748add9f4f: Waiting
+e3e428093f5e: Waiting
+9ca9ebf7d579: Waiting
+286d8c291daa: Waiting
+41c75fa7c958: Layer already exists
+00b3599359ff: Waiting
+0b5275f2c43a: Waiting
+40748add9f4f: Waiting
+e3e428093f5e: Waiting
+9ca9ebf7d579: Waiting
+286d8c291daa: Waiting
+30cf67d7101c: Waiting
+40748add9f4f: Waiting
+e3e428093f5e: Waiting
+9ca9ebf7d579: Waiting
+286d8c291daa: Waiting
+30cf67d7101c: Waiting
+00b3599359ff: Waiting
+0b5275f2c43a: Layer already exists
+286d8c291daa: Waiting
+30cf67d7101c: Layer already exists
+00b3599359ff: Waiting
+40748add9f4f: Waiting
+e3e428093f5e: Waiting
+9ca9ebf7d579: Waiting
+40748add9f4f: Layer already exists
+e3e428093f5e: Waiting
+9ca9ebf7d579: Waiting
+286d8c291daa: Layer already exists
+00b3599359ff: Layer already exists
+e3e428093f5e: Layer already exists
+9ca9ebf7d579: Layer already exists
+8: digest: sha256:5cdf1e27d6af94da6f3ba931838809aaa8b46c7ff6271427c8fa2b03bb899d8a size: 2270
++ docker push ashin2002/my_fastapi_app:latest
+The push refers to repository [docker.io/ashin2002/my_fastapi_app]
+e3e428093f5e: Waiting
+286d8c291daa: Waiting
+0b5275f2c43a: Waiting
+41c75fa7c958: Waiting
+40748add9f4f: Waiting
+14d64154ddd3: Waiting
+9ca9ebf7d579: Waiting
+00b3599359ff: Waiting
+30cf67d7101c: Waiting
+0b5275f2c43a: Waiting
+41c75fa7c958: Waiting
+40748add9f4f: Waiting
+14d64154ddd3: Waiting
+9ca9ebf7d579: Waiting
+00b3599359ff: Waiting
+30cf67d7101c: Waiting
+e3e428093f5e: Waiting
+286d8c291daa: Waiting
+14d64154ddd3: Waiting
+9ca9ebf7d579: Waiting
+00b3599359ff: Waiting
+30cf67d7101c: Waiting
+e3e428093f5e: Waiting
+286d8c291daa: Waiting
+0b5275f2c43a: Waiting
+41c75fa7c958: Waiting
+40748add9f4f: Waiting
+41c75fa7c958: Waiting
+40748add9f4f: Waiting
+14d64154ddd3: Waiting
+9ca9ebf7d579: Waiting
+00b3599359ff: Waiting
+30cf67d7101c: Waiting
+e3e428093f5e: Waiting
+286d8c291daa: Waiting
+0b5275f2c43a: Waiting
+e3e428093f5e: Waiting
+286d8c291daa: Waiting
+0b5275f2c43a: Waiting
+41c75fa7c958: Waiting
+40748add9f4f: Waiting
+14d64154ddd3: Waiting
+9ca9ebf7d579: Waiting
+00b3599359ff: Waiting
+30cf67d7101c: Waiting
+0b5275f2c43a: Waiting
+41c75fa7c958: Waiting
+40748add9f4f: Waiting
+14d64154ddd3: Waiting
+9ca9ebf7d579: Waiting
+00b3599359ff: Waiting
+30cf67d7101c: Waiting
+e3e428093f5e: Waiting
+286d8c291daa: Waiting
+0b5275f2c43a: Waiting
+41c75fa7c958: Waiting
+40748add9f4f: Waiting
+14d64154ddd3: Waiting
+9ca9ebf7d579: Waiting
+00b3599359ff: Waiting
+30cf67d7101c: Waiting
+e3e428093f5e: Waiting
+286d8c291daa: Waiting
+286d8c291daa: Waiting
+0b5275f2c43a: Waiting
+41c75fa7c958: Waiting
+40748add9f4f: Waiting
+14d64154ddd3: Waiting
+9ca9ebf7d579: Waiting
+00b3599359ff: Waiting
+30cf67d7101c: Waiting
+e3e428093f5e: Waiting
+30cf67d7101c: Waiting
+e3e428093f5e: Waiting
+286d8c291daa: Waiting
+0b5275f2c43a: Waiting
+41c75fa7c958: Waiting
+40748add9f4f: Waiting
+14d64154ddd3: Waiting
+9ca9ebf7d579: Waiting
+00b3599359ff: Waiting
+14d64154ddd3: Waiting
+9ca9ebf7d579: Layer already exists
+00b3599359ff: Waiting
+30cf67d7101c: Waiting
+e3e428093f5e: Layer already exists
+286d8c291daa: Waiting
+0b5275f2c43a: Waiting
+41c75fa7c958: Waiting
+40748add9f4f: Waiting
+286d8c291daa: Waiting
+0b5275f2c43a: Waiting
+41c75fa7c958: Waiting
+40748add9f4f: Waiting
+14d64154ddd3: Waiting
+00b3599359ff: Waiting
+30cf67d7101c: Waiting
+286d8c291daa: Waiting
+0b5275f2c43a: Waiting
+41c75fa7c958: Layer already exists
+40748add9f4f: Layer already exists
+14d64154ddd3: Waiting
+00b3599359ff: Waiting
+30cf67d7101c: Waiting
+286d8c291daa: Waiting
+0b5275f2c43a: Waiting
+14d64154ddd3: Waiting
+00b3599359ff: Waiting
+30cf67d7101c: Waiting
+30cf67d7101c: Layer already exists
+286d8c291daa: Layer already exists
+0b5275f2c43a: Waiting
+14d64154ddd3: Layer already exists
+00b3599359ff: Layer already exists
+0b5275f2c43a: Layer already exists
+latest: digest: sha256:5cdf1e27d6af94da6f3ba931838809aaa8b46c7ff6271427c8fa2b03bb899d8a size: 2270
+[Pipeline] }
+[Pipeline] // withCredentials
+[Pipeline] }
+[Pipeline] // script
+[Pipeline] }
+[Pipeline] // stage
+[Pipeline] stage
+[Pipeline] { (Update Manifest Repo)
+[Pipeline] dir
+Running in /var/lib/jenkins/workspace/my_fastapi_app/manifest-workspace
+[Pipeline] {
+[Pipeline] sh
++ git clone https://github.com/Ashinkp/my_fastapi_app.git .
+fatal: destination path '.' already exists and is not an empty directory.
++ true
+[Pipeline] withCredentials
+Masking supported pattern matches of $GH_TOKEN
+[Pipeline] {
+[Pipeline] sh
++ git remote set-url origin https://Ashinkp:****@github.com/Ashinkp/my_fastapi_app.git
++ git pull --rebase origin main
+From https://github.com/Ashinkp/my_fastapi_app
+ * branch            main       -> FETCH_HEAD
+   e7761b2..15ee21d  main       -> origin/main
+Updating e7761b2..15ee21d
+Fast-forward
+ Jenkinsfile | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
++ sed -i s|IMAGE_PLACEHOLDER|ashin2002/my_fastapi_app:8|g k8s/Deployment.yaml
++ git config user.name Ashinkp
++ git config user.email ashinkp33@gmail.com
++ git commit -am chore(manifest): update fast-api-chatbot image tag to 8 [skip ci]
+[main 38cb93e] chore(manifest): update fast-api-chatbot image tag to 8 [skip ci]
+ 1 file changed, 1 insertion(+), 1 deletion(-)
++ git push origin main
+To https://github.com/Ashinkp/my_fastapi_app.git
+   15ee21d..38cb93e  main -> main
+[Pipeline] }
+[Pipeline] // withCredentials
+[Pipeline] }
+[Pipeline] // dir
+[Pipeline] }
+[Pipeline] // stage
+[Pipeline] stage
+[Pipeline] { (Declarative: Post Actions)
+[Pipeline] echo
+Pipeline executed successfully! fast-api-chatbot image built, pushed, and manifest repo updated.
+[Pipeline] }
+[Pipeline] // stage
+[Pipeline] }
+[Pipeline] // withEnv
+[Pipeline] }
+[Pipeline] // withEnv
+[Pipeline] }
+[Pipeline] // node
+[Pipeline] End of Pipeline
+Finished: SUCCESS
